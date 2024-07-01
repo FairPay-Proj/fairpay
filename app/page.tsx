@@ -4,7 +4,7 @@ const Page = () => {
   return (
     <>
       <p>FairPay !!</p>
-      <Button />
+      <Button>Default Button</Button>
     </>
   );
 };
