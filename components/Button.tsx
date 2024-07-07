@@ -1,38 +1,71 @@
 "use client";
 
 import colors from "@FairPay/themes/colors";
-import styled from "styled-components";
+import fontSizes from "@FairPay/themes/fontsizes";
+import styled, {css} from "styled-components";
 
 type ButtonProps = {
-  variant?: "default" | "cancel" | "warning";
+  variant?: "active" | "inActive" | "cancel";
   children: React.ReactNode;
 };
 
+const variants = {
+  active: {
+    color: "#fff",
+    backgroundColor: `${colors.default}`,
+    cursor: "pointer",
+    pseudoClass: {
+      hover: {
+        color: "#fff",
+        backgroundColor: `${colors.hoverActive}`,
+      },
+    },
+  },
+  inActive: {
+    color: "#fff",
+    backgroundColor: `${colors.cancel}`,
+    cursor: "default",
+  },
+  cancel: {
+    color: "#fff",
+    backgroundColor: `${colors.warning}`,
+    cursor: "pointer",
+    pseudoClass: {
+      hover: {
+        color: "#fff",
+        backgroundColor: `${colors.hoverCancel}`,
+      },
+    },
+  },
+};
+
 const ButtonWrap = styled.button<ButtonProps>`
-  width: 350px;
-  height: 60px;
-  padding: 8px 16px;
-  font-size: 16px;
+  width: 100%;
+  height: 3.125vw;
+  padding: 0.417vw 0.833vw;
+  font-size: ${fontSizes.sx};
   border: none;
-  border-radius: 7px;
-  cursor: pointer;
+  border-radius: 0.365vw;
   color: white;
-  background-color: ${(props) => {
-    switch (props.variant) {
-      case "default":
-        return colors.default;
-      case "cancel":
-        return colors.cancel;
-      case "warning":
-        return colors.warning;
-      default:
-        return colors.default;
+  ${({variant}) => {
+    if (variant && variants[variant]) {
+      return css`
+        color: ${variant !== "inActive" && variants[variant].color};
+        background-color: ${variants[variant].backgroundColor};
+        cursor: ${variants[variant].cursor};
+        &:hover {
+          color: ${variant !== "inActive" && variants[variant].pseudoClass.hover.color};
+          background-color: ${variant !== "inActive" &&
+          variants[variant].pseudoClass.hover.backgroundColor};
+          transition: all 0.3s;
+        }
+      `;
     }
-  }};
+  }}
 `;
 
 ButtonWrap.defaultProps = {
-  variant: "default",
+  variant: "active",
 };
 
 const ButtonText = styled.span`
