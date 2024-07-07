@@ -1,5 +1,7 @@
 const colors = {
   default: "#4594FD", // 파란 메인색
+  hoverActive: "#026FFF", // 활성화 버튼 호버 색상
+  hoverCancel: "#FF4747", // 활성화 버튼 호버 색상
   blue: "#005EDB", // 25,000 원
   white: "#FFFFFF", // 유색배경 속 text
   black: "#000000", // menu 이름
