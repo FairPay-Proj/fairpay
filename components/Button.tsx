@@ -5,7 +5,7 @@ import fontSizes from "@FairPay/themes/fontsizes";
 import styled, {css} from "styled-components";
 
 type ButtonProps = {
-  variant?: "active" | "inActive" | "cancel";
+  $variant?: "active" | "inActive" | "cancel";
   children: React.ReactNode;
 };
 
@@ -47,16 +47,16 @@ const ButtonWrap = styled.button<ButtonProps>`
   border: none;
   border-radius: 0.365vw;
   color: white;
-  ${({variant}) => {
-    if (variant && variants[variant]) {
+  ${({$variant}) => {
+    if ($variant && variants[$variant]) {
       return css`
-        color: ${variant !== "inActive" && variants[variant].color};
-        background-color: ${variants[variant].backgroundColor};
-        cursor: ${variants[variant].cursor};
+        color: ${$variant !== "inActive" && variants[$variant].color};
+        background-color: ${variants[$variant].backgroundColor};
+        cursor: ${variants[$variant].cursor};
         &:hover {
-          color: ${variant !== "inActive" && variants[variant].pseudoClass.hover.color};
-          background-color: ${variant !== "inActive" &&
-          variants[variant].pseudoClass.hover.backgroundColor};
+          color: ${$variant !== "inActive" && variants[$variant].pseudoClass.hover.color};
+          background-color: ${$variant !== "inActive" &&
+          variants[$variant].pseudoClass.hover.backgroundColor};
           transition: all 0.3s;
         }
       `;
@@ -65,7 +65,7 @@ const ButtonWrap = styled.button<ButtonProps>`
 `;
 
 ButtonWrap.defaultProps = {
-  variant: "active",
+  $variant: "active",
 };
 
 const ButtonText = styled.span`
@@ -73,8 +73,8 @@ const ButtonText = styled.span`
   font-weight: "bold";
 `;
 
-const Button: React.FC<ButtonProps> = ({variant, children}) => (
-  <ButtonWrap variant={variant}>
+const Button: React.FC<ButtonProps> = ({$variant, children}) => (
+  <ButtonWrap $variant={$variant}>
     <ButtonText>{children}</ButtonText>
   </ButtonWrap>
 );
