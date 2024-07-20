@@ -1,12 +1,7 @@
-import Button from "@FairPay/components/Button";
-import Main from "./(main)/page";
+import Main from "./(main)/Main";
 
 const Page = () => {
-  return (
-    <>
-      <Main />
-    </>
-  );
+  return <Main />;
 };
 
 export default Page;
