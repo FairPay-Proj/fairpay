@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@FairPay/components/Button";
-import Container from "@FairPay/components/Container";
 import colors from "@FairPay/themes/colors";
 import fontSizes from "@FairPay/themes/fontsizes";
 import styled from "styled-components";
@@ -30,14 +29,14 @@ const Img = styled.img`
 
 export default function Main() {
   return (
-    <Container>
+    <>
       <Title>
         이번엔 내가 내야하나? <br />
         아니 너 차례야!
       </Title>
       <P>누가 계산할 차례인지 확인하세요.</P>
       <Img src="/images/mainImg.png" />
-      <Button variant="active">시작하기</Button>
-    </Container>
+      <Button $variant="active">시작하기</Button>
+    </>
   );
 }
