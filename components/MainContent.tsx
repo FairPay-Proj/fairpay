@@ -18,7 +18,7 @@ interface MainContentProps {
 }
 
 const TitleWrapper = styled.div<{$position: TitlePosition}>`
-  padding-top: ${(props) => (props.$position === "middle" ? "9.635vw" : "4.948vw")};
+  padding-top: ${(props) => (props.$position === "middle" ? "9vw" : "4.948vw")};
   font-size: ${fontSizes.lg};
   font-weight: bold;
   text-align: center;
@@ -33,18 +33,16 @@ const P = styled.p`
   font-size: ${fontSizes.sx};
 `;
 
-const WWrap = styled.div`
+const TopWrap = styled.div`
   display: flex;
-  height: 14.375vw;
   flex-direction: column;
-  justify-content: flex-start;
 `;
 
 const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
   height: 3.125vw;
-  padding: 1.146vw 0;
+  padding: 1.719vw 0;
 `;
 
 const MainContent: React.FC<MainContentProps> = ({
@@ -55,10 +53,10 @@ const MainContent: React.FC<MainContentProps> = ({
   children,
 }) => (
   <>
-    <WWrap>
+    <TopWrap>
       <TitleWrapper $position={titlePosition}>{title}</TitleWrapper>
       {description && <P>{description}</P>}
-    </WWrap>
+    </TopWrap>
     {children}
     <ButtonWrap>
       <Button $variant="active">{buttonText}</Button>
