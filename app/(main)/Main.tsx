@@ -39,6 +39,7 @@ export default function Main() {
   return (
     <MainWrap>
       <MainContent
+        childrenStyle={{justifyContent: "center", alignItems: "center"}}
         titlePosition="middle"
         title={
           <Title>

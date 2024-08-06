@@ -9,21 +9,30 @@ import styled from "styled-components";
 
 type TitlePosition = "top" | "middle";
 
+type ChildrenStyle = React.CSSProperties;
+
 interface MainContentProps {
-  titlePosition: TitlePosition;
+  titlePosition?: TitlePosition;
   title: React.ReactNode;
   description?: string;
   buttonText: string;
   children: React.ReactNode;
+  childrenStyle?: ChildrenStyle;
 }
 
-const TitleWrapper = styled.div<{$position: TitlePosition}>`
+const TitleWrap = styled.div<{$position: TitlePosition}>`
   padding-top: ${(props) => (props.$position === "middle" ? "9vw" : "4.948vw")};
   font-size: ${fontSizes.lg};
   font-weight: bold;
   text-align: center;
   line-height: 1.563vw;
   margin-bottom: 0px;
+`;
+
+const ChildrenWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `;
 
 const P = styled.p`
@@ -46,18 +55,19 @@ const ButtonWrap = styled.div`
 `;
 
 const MainContent: React.FC<MainContentProps> = ({
-  titlePosition,
+  titlePosition = "top", // 기본값
   title,
-  description = null,
+  description,
   buttonText,
+  childrenStyle,
   children,
 }) => (
   <>
     <TopWrap>
-      <TitleWrapper $position={titlePosition}>{title}</TitleWrapper>
+      <TitleWrap $position={titlePosition}>{title}</TitleWrap>
       {description && <P>{description}</P>}
     </TopWrap>
-    {children}
+    <ChildrenWrap style={childrenStyle}>{children}</ChildrenWrap>
     <ButtonWrap>
       <Button $variant="active">{buttonText}</Button>
     </ButtonWrap>
