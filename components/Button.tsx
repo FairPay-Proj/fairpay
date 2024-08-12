@@ -2,11 +2,11 @@
 
 import colors from "@FairPay/themes/colors";
 import fontSizes from "@FairPay/themes/fontsizes";
+import {ButtonHTMLAttributes} from "react";
 import styled, {css} from "styled-components";
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   $variant?: "active" | "inActive" | "cancel";
-  children: React.ReactNode;
 };
 
 const variants = {
@@ -73,8 +73,8 @@ const ButtonText = styled.span`
   font-weight: "bold";
 `;
 
-const Button: React.FC<ButtonProps> = ({$variant, children}) => (
-  <ButtonWrap $variant={$variant}>
+const Button: React.FC<ButtonProps> = ({$variant, children, ...props}) => (
+  <ButtonWrap $variant={$variant} {...props}>
     <ButtonText>{children}</ButtonText>
   </ButtonWrap>
 );

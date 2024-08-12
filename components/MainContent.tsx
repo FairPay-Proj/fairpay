@@ -33,6 +33,7 @@ const ChildrenWrap = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow: scroll;
 `;
 
 const P = styled.p`
@@ -54,7 +55,7 @@ const ButtonWrap = styled.div`
   padding: 1.719vw 0;
 `;
 
-const MainContent: React.FC<MainContentProps> = ({
+export const MainContent: React.FC<MainContentProps> = ({
   titlePosition = "top", // 기본값
   title,
   description,
