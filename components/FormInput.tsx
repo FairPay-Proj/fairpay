@@ -1,3 +1,4 @@
+import colors from "@FairPay/themes/colors";
 import fontSizes from "@FairPay/themes/fontsizes";
 import {Control, useController} from "react-hook-form";
 import styled, {css} from "styled-components";
@@ -12,15 +13,21 @@ const variants = {
   },
 };
 
-const Label = styled.p`
-  font-size: ${fontSizes.sx};
+const InputContainer = styled.div`
+  width: 96%;
+`;
+
+const Label = styled.p<styleProps>`
+  font-size: ${fontSizes.md};
+  color: ${(props) => props.color};
 `;
 
 const InputBox = styled.input<inputProps>`
-  font-size: ${fontSizes.xs};
-  width: 17.3vw;
+  font-size: ${fontSizes.sx};
+  width: 100%;
   height: 2.396vw;
   padding-left: 0.5vw;
+  border: 1px solid red;
   ${({$variant}) => {
     if ($variant && variants[$variant]) {
       return css`
@@ -31,16 +38,21 @@ const InputBox = styled.input<inputProps>`
   }}
 `;
 
+interface styleProps {
+  color: string;
+}
 interface inputProps {
-  name: string; // 이 input 필드의 id(=key)
   control: Control;
+  register: any;
+  validation?: any;
   disabled?: boolean;
+  name: string; // 이 input 필드의 id(=key)
   type: string;
   label?: string;
-  placeholder: string;
   $variant?: "all" | "underLine";
 }
-const FormInput = ({name, control, type, label, placeholder, $variant}: inputProps) => {
+
+const FormInput = ({name, control, register, validation, type, label, $variant}: inputProps) => {
   const disabled = false;
 
   const {
@@ -53,17 +65,25 @@ const FormInput = ({name, control, type, label, placeholder, $variant}: inputPro
   });
 
   return (
-    <>
-      {label && <Label>{label}</Label>}
+    <InputContainer>
+      {fieldError ? (
+        <Label color={colors.fail}>{fieldError.message}</Label>
+      ) : label ? (
+        <Label color={colors.black}>{label}</Label>
+      ) : (
+        <></>
+      )}
       <InputBox
         name={name}
         control={control}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
+        placeholder={validation.required}
         type={type}
-        $variant={$variant}></InputBox>
-    </>
+        $variant={$variant}
+        {...register(name, validation)}
+      />
+    </InputContainer>
   );
 };
 
