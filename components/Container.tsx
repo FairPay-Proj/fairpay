@@ -11,8 +11,8 @@ const Wrapper = styled.div`
 const WrapperContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 18.177%;
-  height: 40.938vw;
+  width: 20.446%;
+  height: 44.375vw;
   background: #ffffff;
   border-radius: 1.563vw;
   box-shadow: 10px 10px 30px rgb(174, 174, 192, 0.5);
