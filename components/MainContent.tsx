@@ -11,13 +11,19 @@ type TitlePosition = "top" | "middle";
 
 type ChildrenStyle = React.CSSProperties;
 
+interface ButtonPropsType {
+  text: string;
+  onClickEvent: () => void;
+  variant: "active" | "inActive" | "cancel";
+}
+
 interface MainContentProps {
   titlePosition?: TitlePosition;
   title: React.ReactNode;
   description?: string;
-  buttonText: string;
   children: React.ReactNode;
   childrenStyle?: ChildrenStyle;
+  buttonProps?: ButtonPropsType;
 }
 
 const TitleWrap = styled.div<{$position: TitlePosition}>`
@@ -59,20 +65,28 @@ export const MainContent: React.FC<MainContentProps> = ({
   titlePosition = "top", // 기본값
   title,
   description,
-  buttonText,
   childrenStyle,
   children,
-}) => (
-  <>
-    <TopWrap>
-      <TitleWrap $position={titlePosition}>{title}</TitleWrap>
-      {description && <P>{description}</P>}
-    </TopWrap>
-    <ChildrenWrap style={childrenStyle}>{children}</ChildrenWrap>
-    <ButtonWrap>
-      <Button $variant="active">{buttonText}</Button>
-    </ButtonWrap>
-  </>
-);
+  buttonProps = {
+    text: "",
+    onClickEvent: () => {},
+    variant: "active",
+  },
+}) => {
+  return (
+    <>
+      <TopWrap>
+        <TitleWrap $position={titlePosition}>{title}</TitleWrap>
+        {description && <P>{description}</P>}
+      </TopWrap>
+      <ChildrenWrap style={childrenStyle}>{children}</ChildrenWrap>
+      <ButtonWrap>
+        <Button $variant={buttonProps.variant} onClick={buttonProps.onClickEvent}>
+          {buttonProps.text}
+        </Button>
+      </ButtonWrap>
+    </>
+  );
+};
 
 export default MainContent;

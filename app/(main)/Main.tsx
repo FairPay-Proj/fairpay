@@ -26,7 +26,11 @@ export default function Main() {
           </Title>
         }
         description="누가 계산할 차례인지 확인하세요."
-        buttonText="시작하기">
+        buttonProps={{
+          text: "시작하기",
+          onClickEvent: () => {},
+          variant: "active",
+        }}>
         <ImgWrap>
           <Img src="/images/mainImg.png" alt="Main Image" />
         </ImgWrap>
