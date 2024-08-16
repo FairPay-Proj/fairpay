@@ -7,7 +7,7 @@ import {FlexBox, Text, Title} from "@FairPay/components/styled/styledComponent";
 import {useForm} from "react-hook-form";
 
 export default function findPassword() {
-  const {control} = useForm();
+  const {control, register} = useForm();
 
   return (
     <MainContent
@@ -18,7 +18,12 @@ export default function findPassword() {
         </Title>
       }
       childrenStyle={{paddingTop: "3.958vw"}}
-      buttonText="로그인하러 가기">
+      buttonProps={{
+        text: "로그인하러 가기",
+        onClickEvent: () => {
+          console.error("개발해야함");
+        },
+      }}>
       <FlexBox
         sx={{
           gap: "0.625vw",
@@ -28,8 +33,9 @@ export default function findPassword() {
           control={control}
           type="text"
           label="이메일"
-          placeholder="fairpay@fairpay.com"
           $variant="all"
+          validation={{required: "fairpay@fairpay.com"}}
+          register={register}
         />
         <Caption>
           해당 이메일로 새 비밀번호가 전송되었습니다. <br />

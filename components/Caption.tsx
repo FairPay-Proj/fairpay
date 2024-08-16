@@ -7,7 +7,7 @@ import {Img, ImgWrap} from "./styled/styledComponent";
 const Box = styled.div`
   display: flex;
   flex-direction: row;
-  /* flex-grow: 1; */
+  align-self: stretch;
   align-items: flex-start;
   justify-content: center;
   padding: 0.521vw;

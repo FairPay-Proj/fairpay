@@ -12,9 +12,9 @@ type TitlePosition = "top" | "middle";
 type ChildrenStyle = React.CSSProperties;
 
 interface ButtonPropsType {
-  text: string;
-  onClickEvent: () => void;
-  variant: "active" | "inActive" | "cancel";
+  text?: string;
+  onClickEvent?: () => void;
+  variant?: "active" | "inActive" | "cancel";
 }
 
 interface MainContentProps {
@@ -67,12 +67,10 @@ export const MainContent: React.FC<MainContentProps> = ({
   description,
   childrenStyle,
   children,
-  buttonProps = {
-    text: "",
-    onClickEvent: () => {},
-    variant: "active",
-  },
+  buttonProps = {},
 }) => {
+  const {text = "", onClickEvent = () => {}, variant = "active"} = buttonProps;
+
   return (
     <>
       <TopWrap>
@@ -81,8 +79,8 @@ export const MainContent: React.FC<MainContentProps> = ({
       </TopWrap>
       <ChildrenWrap style={childrenStyle}>{children}</ChildrenWrap>
       <ButtonWrap>
-        <Button $variant={buttonProps.variant} onClick={buttonProps.onClickEvent}>
-          {buttonProps.text}
+        <Button $variant={variant} onClick={onClickEvent}>
+          {text}
         </Button>
       </ButtonWrap>
     </>
