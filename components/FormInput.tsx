@@ -50,11 +50,20 @@ interface inputProps {
   type: string;
   label?: string;
   $variant?: "all" | "underLine";
+  placeholder?: string;
 }
 
-const FormInput = ({name, control, register, validation, type, label, $variant}: inputProps) => {
-  const disabled = false;
-
+const FormInput = ({
+  name,
+  control,
+  register,
+  validation,
+  type,
+  label,
+  $variant,
+  placeholder,
+  disabled,
+}: inputProps) => {
   const {
     field: {onChange, onBlur, value = "", ...inputField},
     fieldState: {error: fieldError},
@@ -78,10 +87,11 @@ const FormInput = ({name, control, register, validation, type, label, $variant}:
         control={control}
         value={value}
         onChange={onChange}
-        placeholder={validation.required}
+        placeholder={placeholder}
         type={type}
         $variant={$variant}
         {...register(name, validation)}
+        disabled={disabled}
       />
     </InputContainer>
   );
