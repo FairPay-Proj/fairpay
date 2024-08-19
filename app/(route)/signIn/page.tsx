@@ -1,10 +1,18 @@
 "use client";
 import FormInput from "@FairPay/components/FormInput";
 import MainContent from "@FairPay/components/MainContent";
+import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 
 export default function SignIn() {
-  const {control, handleSubmit, register} = useForm();
+  const {control, handleSubmit, register, formState} = useForm({mode: "onChange"});
+  const {isValidating, isValid} = formState;
+  // 버튼 활성화 플래그
+  const [isActiveState, setIsActiveState] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsActiveState(isValid);
+  }, [isValid]);
 
   const save = (data) => {
     // TODO data 의 type 정확하게 정의해주기
@@ -20,6 +28,7 @@ export default function SignIn() {
       type: "text",
       label: "이메일",
       $variant: "all",
+      placeholder: "이메일을 입력해 주세요.",
       validation: {
         required: "이메일을 입력해 주세요.",
         pattern: {
@@ -33,6 +42,7 @@ export default function SignIn() {
       type: "password",
       label: "비밀번호",
       $variant: "all",
+      placeholder: "비밀번호를 입력해 주세요.",
       validation: {
         required: "비밀번호를 입력해 주세요.",
       },
@@ -42,6 +52,7 @@ export default function SignIn() {
       type: "password",
       label: "비밀번호 확인",
       $variant: "all",
+      placeholder: "비밀번호 확인",
       validation: {
         required: "비밀번호 확인을 입력해 주세요.",
         validate: (value, data) => value === data.password || "비밀번호가 일치하지 않습니다.",
@@ -52,6 +63,7 @@ export default function SignIn() {
       type: "text",
       label: "이름",
       $variant: "all",
+      placeholder: "이름을 입력해 주세요.",
       validation: {
         required: "이름을 입력해 주세요.",
       },
@@ -66,7 +78,7 @@ export default function SignIn() {
       buttonProps={{
         text: "회원가입",
         onClickEvent: handleSubmit(save),
-        variant: "active",
+        variant: isActiveState ? "active" : "inActive",
       }}>
       {fields.map((field) => (
         <FormInput
@@ -76,8 +88,10 @@ export default function SignIn() {
           type={field.type}
           label={field.label}
           $variant="all"
+          placeholder={field.placeholder}
           validation={field.validation}
           register={register}
+          disabled={false}
         />
       ))}
     </MainContent>
