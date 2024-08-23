@@ -1,8 +1,7 @@
-import {CSSProperties} from "react";
-import styled from "styled-components";
+import styled, {CSSObject} from "styled-components";
 
 interface FlexBoxProps {
-  sx?: CSSProperties;
+  sx?: CSSObject;
 }
 
 export const Title = styled.div`
@@ -33,9 +32,5 @@ export const FlexBox = styled.div<FlexBoxProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  ${({sx}) =>
-    sx &&
-    Object.entries(sx)
-      .map(([key, value]) => `${key}: ${value};`)
-      .join("")}
+  ${(props) => props.sx && {...props.sx}}; // sx에서 넘어온 스타일을 덮어씌움
 `;
