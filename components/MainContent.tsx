@@ -34,6 +34,11 @@ const TitleWrap = styled.div<{$position: TitlePosition}>`
   text-align: center;
   line-height: 1.563vw;
   margin-bottom: 0px;
+  @media (max-width: 650px) {
+    font-size: ${fontSizes.m_xl};
+    line-height: 8.563vw;
+    padding-top: ${(props) => (props.$position === "middle" ? "18vw" : "4.948vw")};
+  }
 `;
 
 const ChildrenWrap = styled.div`
@@ -48,6 +53,9 @@ const P = styled.p`
   font-weight: normal;
   color: ${colors.grey};
   font-size: ${fontSizes.sx};
+  @media (max-width: 650px) {
+    font-size: ${fontSizes.m_lg};
+  }
 `;
 
 const TopWrap = styled.div`
@@ -60,6 +68,13 @@ const ButtonWrap = styled.div`
   flex-direction: column;
   height: 3.125vw;
   padding: 1.719vw 0;
+  @media (max-width: 650px) {
+    padding: 0vw;
+    height: 30vw;
+    justify-content: flex-end;
+    padding-bottom: 4vw;
+    gap: 1.8vw;
+  }
 `;
 
 export const MainContent: React.FC<MainContentProps> = ({

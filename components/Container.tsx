@@ -18,6 +18,11 @@ const WrapperContainer = styled.div`
   box-shadow: 10px 10px 30px rgb(174, 174, 192, 0.5);
   margin: 0 auto;
   padding: 0 1.145%;
+  @media (max-width: 650px) {
+    width: 100vw;
+    height: 100vh;
+    padding: 0 6.145%;
+  }
 `;
 
 const Container = ({children}: any) => {

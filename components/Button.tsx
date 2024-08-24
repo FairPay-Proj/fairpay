@@ -62,6 +62,13 @@ const ButtonWrap = styled.button<ButtonProps>`
       `;
     }
   }}
+  @media (max-width: 650px) {
+    /* width: 90vw; */
+    height: 14.042vw;
+    padding: 4.617vw 5.133vw;
+    font-size: ${fontSizes.m_lg};
+    border-radius: 2.365vw;
+  }
 `;
 
 ButtonWrap.defaultProps = {
