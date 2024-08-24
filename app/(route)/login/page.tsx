@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@FairPay/components/Button";
+import FormCheckbox from "@FairPay/components/FormCheckbox";
 import FormInput from "@FairPay/components/FormInput";
 import MainContent from "@FairPay/components/MainContent";
 import {FlexBox, Text, Title} from "@FairPay/components/styled/styledComponent";
@@ -8,12 +9,17 @@ import fontSizes from "@FairPay/themes/fontsizes";
 import {useForm} from "react-hook-form";
 import styled from "styled-components";
 
-const TextWrap = styled.span`
-  font-size: ${fontSizes.xs};
+const TextWrap = styled.span<{cursor?: boolean}>`
+  font-size: ${fontSizes.sx};
+  cursor: ${({cursor}) => (cursor ? "pointer" : "default")};
 `;
 
 export default function Login() {
-  const {control, register} = useForm();
+  const {control, register, handleSubmit} = useForm();
+
+  const login = (data) => {
+    console.log("data : ", data);
+  };
 
   return (
     <MainContent
@@ -55,20 +61,21 @@ export default function Login() {
               width: "100%",
             }}>
             <FlexBox sx={{flexDirection: "row", alignItems: "center"}}>
-              <input
-                type="checkbox"
-                // 디자인에 맞는 이미지 사용하도록 (label 사용)
+              <FormCheckbox
+                control={control}
+                name={"saveState"}
+                text={<TextWrap>로그인 상태 유지</TextWrap>}
+                gap="0.208vw"
               />
-              <TextWrap>로그인 상태 유지</TextWrap>
             </FlexBox>
             <FlexBox sx={{flexDirection: "row", alignItems: "center", gap: "0.365vw"}}>
-              <TextWrap>비밀번호 찾기</TextWrap>
+              <TextWrap cursor>비밀번호 찾기</TextWrap>
               <TextWrap>|</TextWrap>
-              <TextWrap>회원 가입</TextWrap>
+              <TextWrap cursor>회원 가입</TextWrap>
             </FlexBox>
           </FlexBox>
         </FlexBox>
-        <Button>로그인</Button>
+        <Button onClick={handleSubmit(login)}>로그인</Button>
       </FlexBox>
     </MainContent>
   );
