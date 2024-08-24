@@ -20,11 +20,14 @@ const InputContainer = styled.div`
 const Label = styled.p<styleProps>`
   font-size: ${fontSizes.md};
   color: ${(props) => props.color};
+  @media (max-width: 650px) {
+    font-size: ${fontSizes.m_md};
+  }
 `;
 
 const InputBox = styled.input<inputProps>`
   font-size: ${fontSizes.sx};
-  width: 100%;
+  width: 100vw;
   height: 2.396vw;
   padding-left: 0.5vw;
   border: 1px solid red;
@@ -36,6 +39,12 @@ const InputBox = styled.input<inputProps>`
       `;
     }
   }}
+  @media (max-width: 650px) {
+    width: 84vw;
+    height: 10.396vw;
+    font-size: ${fontSizes.m_sx};
+    padding-left: 3vw;
+  }
 `;
 
 interface styleProps {
