@@ -1,6 +1,7 @@
 "use client";
 
 import Container from "@FairPay/components/Container";
+import Header from "@FairPay/components/Header";
 import StyledComponentsRegistry from "@FairPay/lib/registry";
 import "@FairPay/styles/global.css";
 
@@ -14,6 +15,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
+          {/* <Header /> */}
           <Container children={children} />
         </StyledComponentsRegistry>
       </body>

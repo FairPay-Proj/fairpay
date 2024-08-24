@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Header from "./Header";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,7 +29,10 @@ const WrapperContainer = styled.div`
 const Container = ({children}: any) => {
   return (
     <Wrapper>
-      <WrapperContainer>{children}</WrapperContainer>
+      <WrapperContainer>
+        <Header />
+        {children}
+      </WrapperContainer>
     </Wrapper>
   );
 };
