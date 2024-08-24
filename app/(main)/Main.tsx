@@ -3,6 +3,8 @@
 
 import MainContent from "@FairPay/components/MainContent";
 import {Img, ImgWrap, Text, Title} from "@FairPay/components/styled/styledComponent";
+import {useRouter} from "next/navigation";
+import {useCallback} from "react";
 import styled from "styled-components";
 
 const MainWrap = styled.div`
@@ -14,6 +16,12 @@ const MainWrap = styled.div`
 `;
 
 export default function Main() {
+  const router = useRouter();
+
+  const goStart = useCallback(() => {
+    router.push("/login");
+  }, []);
+
   return (
     <MainWrap>
       <MainContent
@@ -28,7 +36,7 @@ export default function Main() {
         description="누가 계산할 차례인지 확인하세요."
         buttonProps={{
           text: "시작하기",
-          onClickEvent: () => {},
+          onClickEvent: goStart,
           variant: "active",
         }}>
         <ImgWrap>

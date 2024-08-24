@@ -6,6 +6,8 @@ import FormInput from "@FairPay/components/FormInput";
 import MainContent from "@FairPay/components/MainContent";
 import {FlexBox, Text, Title} from "@FairPay/components/styled/styledComponent";
 import fontSizes from "@FairPay/themes/fontsizes";
+import {useRouter} from "next/navigation";
+import {useCallback} from "react";
 import {useForm} from "react-hook-form";
 import styled from "styled-components";
 
@@ -15,11 +17,20 @@ const TextWrap = styled.span<{cursor?: boolean}>`
 `;
 
 export default function Login() {
+  const router = useRouter();
   const {control, register, handleSubmit} = useForm();
 
   const login = (data) => {
     console.log("data : ", data);
   };
+
+  const goFindPassword = useCallback(() => {
+    router.push("/findPassword");
+  }, []);
+
+  const goSignIn = useCallback(() => {
+    router.push("/signIn");
+  }, []);
 
   return (
     <MainContent
@@ -69,9 +80,13 @@ export default function Login() {
               />
             </FlexBox>
             <FlexBox sx={{flexDirection: "row", alignItems: "center", gap: "0.365vw"}}>
-              <TextWrap cursor>비밀번호 찾기</TextWrap>
+              <TextWrap cursor onClick={goFindPassword}>
+                비밀번호 찾기
+              </TextWrap>
               <TextWrap>|</TextWrap>
-              <TextWrap cursor>회원 가입</TextWrap>
+              <TextWrap cursor onClick={goSignIn}>
+                회원 가입
+              </TextWrap>
             </FlexBox>
           </FlexBox>
         </FlexBox>
