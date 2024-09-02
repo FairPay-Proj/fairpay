@@ -18,7 +18,8 @@ const TextWrap = styled.span<{cursor?: boolean}>`
 
 export default function Login() {
   const router = useRouter();
-  const {control, register, handleSubmit} = useForm();
+  const {control, register, handleSubmit, formState} = useForm({mode: "onChange"});
+  const {isValid} = formState;
 
   const login = (data) => {
     console.log("data : ", data);
@@ -51,7 +52,13 @@ export default function Login() {
               type="text"
               $variant="all"
               placeholder="이메일"
-              validation={{required: "이메일을 입력해 주세요."}}
+              validation={{
+                required: "이메일을 입력해 주세요.",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "유효한 이메일 형식을 입력해 주세요.",
+                },
+              }}
               register={register}
             />
             <FormInput
@@ -90,7 +97,9 @@ export default function Login() {
             </FlexBox>
           </FlexBox>
         </FlexBox>
-        <Button onClick={handleSubmit(login)}>로그인</Button>
+        <Button onClick={handleSubmit(login)} $variant={isValid ? "active" : "inActive"}>
+          로그인
+        </Button>
       </FlexBox>
     </MainContent>
   );
