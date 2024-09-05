@@ -1,0 +1,4 @@
+export const Constants = {
+  SETTING_CONFIG_DEFAULT: "DEFAULT",
+  SETTING_CONFIG_PASSWORD: "PASSWORD",
+};
