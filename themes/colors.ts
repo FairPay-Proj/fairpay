@@ -7,6 +7,7 @@ const colors = {
   black: "#000000", // menu 이름
   grey: "#4C4B50", // 회색 text
   lightgrey: "#7F7F7F", // 날짜표시 2024.03.03
+  barColor: "#D9D9D9", // 날짜 옆 선
   inactivegrey: "#9F9F9F", // dkssud03@naver.com
   fail: "#FF3535", // validation check 실패
   warning: "#FF6A6A", // 삭제하기
